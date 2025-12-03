@@ -10,6 +10,8 @@ class RoomSerializer(serializers.ModelSerializer):
         
         
 class MessageSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    
     class Meta:
         model = Message
         fields = "__all__"
