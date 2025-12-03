@@ -117,3 +117,10 @@ STATIC_URL = 'static/'
 
 # CORS SETTINGS
 CORS_ALLOW_ANY_ORIGIN = True
+
+# CHANNELS SETTINGS
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
