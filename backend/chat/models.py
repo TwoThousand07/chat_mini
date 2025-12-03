@@ -20,4 +20,4 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{room.name} - {user.username}: {content[:30]}'
+        return f'{self.room.name} - {self.user.username}: {self.content[:30]}'
