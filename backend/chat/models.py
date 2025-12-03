@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 
 class Room(models.Model):
-    name = models.CharField(unique=True)
-    slug = models.SlugField(unique=True)
+    name = models.CharField(unique=True, max_length=255)
+    slug = models.SlugField(unique=True, max_length=255)
 
     def __str__(self):
         return self.name
