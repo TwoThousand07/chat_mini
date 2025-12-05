@@ -12,12 +12,19 @@ from django.shortcuts import get_object_or_404
 
 
 class RoomViewSet(viewsets.ModelViewSet):
+    '''
+        Viewset для Room 
+    '''
     queryset = Room.objects.prefetch_related("members").all()
     serializer_class = RoomSerializer
     lookup_field = "slug"
 
 
 class UserChats(generics.ListAPIView):
+    '''
+        Представление, отправляющее все чаты, в которых присутсвует пользователь
+    '''
+    
     def get_queryset(self):
         user = self.request.user
 
@@ -28,6 +35,10 @@ class UserChats(generics.ListAPIView):
 
 
 class EnrollChatAPIView(APIView):
+    '''
+        Предсталвение для захода в чат
+    '''
+    
     permission_classes = [IsAuthenticated]
 
     def post(self, request, slug):
@@ -43,6 +54,9 @@ class EnrollChatAPIView(APIView):
 
 
 class ExitChatAPIView(APIView):
+    '''
+        Представление для выхода из чата
+    '''
     permission_classes = [IsAuthenticated]
 
     def post(self, request, slug):
