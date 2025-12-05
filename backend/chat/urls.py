@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import RoomViewSet, UserChats, EnrollChatAPIView, ExitChatAPIView
+from .views import RoomViewSet, UserChats, EnrollChatAPIView, ExitChatAPIView, MessageListApiView
 
 from rest_framework.routers import SimpleRouter
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path("my_chats/", UserChats.as_view(), name="user-chats"),
     path("enroll/<slug:slug>/", EnrollChatAPIView.as_view(), name="enroll-chat"),
     path("exit/<slug:slug>/", ExitChatAPIView.as_view(), name="enroll-chat"),
+    path("rooms/<str:room_slug>/messages/", MessageListApiView.as_view()),
 ] + router.urls

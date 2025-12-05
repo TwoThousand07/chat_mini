@@ -8,8 +8,6 @@ from rest_framework import status
 from .models import Room, Message
 from .serializers import RoomSerializer, MessageSerializer
 
-from django.shortcuts import get_object_or_404
-
 
 class RoomViewSet(viewsets.ModelViewSet):
     '''
@@ -69,3 +67,12 @@ class ExitChatAPIView(APIView):
 
         room.members.remove(user)
         return Response({"message": f"You are successfully exited from chat {room.name}"}, status=status.HTTP_200_OK)
+    
+    
+class MessageListApiView(generics.ListAPIView):
+    serializer_class = MessageSerializer
+    
+    def get_queryset(self):
+        room_slug = self.kwargs["room_slug"]
+        
+        return Message.objects.select_related("room").filter(room__slug=room_slug).order_by("created_at")

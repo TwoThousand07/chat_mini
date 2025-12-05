@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     
     # THIRD PARTY
     "rest_framework",
+    "rest_framework_simplejwt",
     "channels",
     "corsheaders",
     
@@ -134,3 +135,12 @@ CHANNEL_LAYERS = {
 #         }
 #     }
 # }
+
+# REST FRAMEWORK SETTINGS
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+
+}
