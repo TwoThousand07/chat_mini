@@ -118,9 +118,19 @@ STATIC_URL = 'static/'
 # CORS SETTINGS
 CORS_ALLOW_ANY_ORIGIN = True
 
-# CHANNELS SETTINGS
+# CHANNELS SETTINGS (LOCAL)
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
+# CHANNELS REDIS (ONLY IN DOCKER)
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("localhost", 6379)]
+#         }
+#     }
+# }

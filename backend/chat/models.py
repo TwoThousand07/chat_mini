@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Room(models.Model):
     name = models.CharField(unique=True, max_length=255)
     slug = models.SlugField(unique=True, max_length=255)
+    members = models.ManyToManyField(User, related_name="chats", default=None, blank=True, null=True)
 
     def __str__(self):
         return self.name
