@@ -27,7 +27,7 @@ class UserChats(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class EnrollToChatAPIView(APIView):
+class EnrollChatAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, slug):
@@ -37,8 +37,21 @@ class EnrollToChatAPIView(APIView):
             room = Room.objects.get(slug=slug)
         except Exception as e:
             return Response(f"Room does not exist. ({e})", status=status.HTTP_404_NOT_FOUND)
-        
+
         room.members.add(user)
         return Response({"message": f"You are successfully added to chat {room.name}"}, status=status.HTTP_200_OK)
-        
-        
+
+
+class ExitChatAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, slug):
+        user = request.user
+
+        try:
+            room = Room.objects.get(slug=slug)
+        except Exception as e:
+            return Response(f"Room does not exist. ({e})", status=status.HTTP_404_NOT_FOUND)
+
+        room.members.remove(user)
+        return Response({"message": f"You are successfully exited from chat {room.name}"}, status=status.HTTP_200_OK)
