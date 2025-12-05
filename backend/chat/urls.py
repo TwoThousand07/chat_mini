@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import RoomListAPIView, RoomViewSet, UserChats
+from .views import RoomViewSet, UserChats
 
 from rest_framework.routers import SimpleRouter
 
